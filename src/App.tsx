@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import Article from './components/Article'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export type ArticleType = {
+  title: string
+  cover: string
+  summary: string
+  bookmarked: boolean
+  likes: number
 }
 
-export default App;
+const Container = styled.div`
+  margin: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2em;
+`
+
+function App() {
+  const [articles, setArticles] = useState<Array<ArticleType>>([])
+
+  useEffect(() => {
+    fetch(
+      'https://gist.githubusercontent.com/krsnadjava25/03728b7c53d50c1e8196aa52983aed69/raw/3ee4ca9bb8d490abc36043e5c9547040d12bdda1/articles.json'
+    )
+      .then(response => response.json())
+      .then(data => setArticles(data))
+  }, [])
+
+  return (
+    <Container>
+      {articles.map((article, index) => (
+        <Article key={index} index={index} article={article} />
+      ))}
+    </Container>
+  )
+}
+
+export default App
