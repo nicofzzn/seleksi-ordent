@@ -20,11 +20,11 @@ const Container = styled.div`
 
 function App() {
   const [articles, setArticles] = useState<Array<ArticleType>>([])
+  const url =
+    'https://gist.githubusercontent.com/krsnadjava25/03728b7c53d50c1e8196aa52983aed69/raw/3ee4ca9bb8d490abc36043e5c9547040d12bdda1/articles.json'
 
   useEffect(() => {
-    fetch(
-      'https://gist.githubusercontent.com/krsnadjava25/03728b7c53d50c1e8196aa52983aed69/raw/3ee4ca9bb8d490abc36043e5c9547040d12bdda1/articles.json'
-    )
+    fetch(url)
       .then(response => response.json())
       .then(data => setArticles(data))
   }, [])
