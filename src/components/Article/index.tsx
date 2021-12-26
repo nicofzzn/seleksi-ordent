@@ -18,6 +18,7 @@ import isPrime from '../../utils/isPrime'
 import getLineClamp from '../../utils/getLineClamp'
 
 const Article = ({ article, index }: { article: ArticleType; index: number }) => {
+  // title height is required to determine how much space available for summary text
   const [titleHeight, setTitleHeight] = useState<number>(0)
   const titleRef = useRef<HTMLParagraphElement>(null)
 
