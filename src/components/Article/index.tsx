@@ -49,10 +49,14 @@ const Article = ({ article, index }: { article: ArticleType; index: number }) =>
         <RightSideFooter>
           <LikeWrapper>
             <Text bold>{article.likes}</Text>
-            <LikeIcon />
+            <LikeIcon data-testid={'likeIcon'} />
           </LikeWrapper>
-          {article.bookmarked ? <BookmaredIcon /> : <BookmarkIcon />}
-          <ShareIcon />
+          {article.bookmarked ? (
+            <BookmaredIcon data-testid={'bookmarkedIcon'} />
+          ) : (
+            <BookmarkIcon data-testid={'bookmarkIcon'} />
+          )}
+          <ShareIcon data-testid={'shareIcon'} />
         </RightSideFooter>
       </Footer>
     </Container>

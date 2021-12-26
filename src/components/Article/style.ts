@@ -46,6 +46,7 @@ export const TitleWrapper = styled.div`
   padding: 5px 5px;
 `
 
+// summary will not be shown if there is no available space in the article
 export const SummaryWrapper = styled.div.attrs(
   ({ lineClamp }: { lineClamp: number }) => ({
     lineClamp,
